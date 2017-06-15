@@ -14,8 +14,12 @@ config :hands_chat_server, HandsChatServer.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "jivsnfxUnpRmoRjRPxNpIGWocypCg2YPiaHtUMCDbqTAAYQYQHiFgirGw9BQDScF",
   render_errors: [view: HandsChatServer.ErrorView, accepts: ~w(html json)],
+  # pubsub: [name: HandsChatServer.PubSub,
+  #          adapter: Phoenix.PubSub.PG2]
   pubsub: [name: HandsChatServer.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.Redis,
+           node_name: "hands-redis",
+           host: "hands-redis"]
 
 # Configures Elixir's Logger
 config :logger, :console,

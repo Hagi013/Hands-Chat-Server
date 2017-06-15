@@ -14,7 +14,7 @@ services:
         image: "marcelocg/phoenix"
         container_name: "hands_chat_server"
         ports:
-            - '4000:4000'
+            - '4000-4001:4000-4001'
         volumes: 
             - ../hands_chat_server:/work/hands_chat_server
         tty: true
