@@ -1,0 +1,31 @@
+version: '3'
+services: 
+    db:
+        image: "postgres:latest"
+        container_name: "hands-postgres"
+        ports: 
+            - '5432:5432'
+    redis:
+        image: "redis:latest"
+        container_name: "hands-redis"
+        ports: 
+            - '6379:6379'
+    chat-server1:
+        image: "marcelocg/phoenix"
+        container_name: "hands_chat_server"
+        ports:
+            - '4000:4000'
+        volumes: 
+            - ../hands_chat_server:/work/hands_chat_server
+        tty: true
+        depends_on: 
+            - db
+            - redis
+        environment:
+            DB_NAME: "hands-chat"
+            DB_HOST: "hands-postgres"
+            DB_USERNAME: "postgres"
+            DB_PASSWORD: "postgres"
+            S3_BUCKET: "hands-chat"
+            PORT: 4000
+            RELX_REPLACE_OS_VARS: "true"

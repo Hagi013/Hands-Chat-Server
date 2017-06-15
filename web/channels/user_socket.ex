@@ -2,7 +2,7 @@ defmodule HandsChatServer.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", HandsChatServer.RoomChannel
+  channel "rooms:*", HandsChatServer.RoomChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
