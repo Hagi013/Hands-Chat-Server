@@ -23,6 +23,7 @@ defmodule HandsChatServer.Web do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      alias HandsChatServer.Repo
     end
   end
 
