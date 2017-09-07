@@ -2,6 +2,7 @@ defmodule HandsChatServer.ChatMessageController do
   use HandsChatServer.Web, :controller
 
   alias HandsChatServer.ChatMessage
+  alias HandsChatServer.ChatUser
 
   def index(conn, _params) do
     chat_messages = Repo.all(ChatMessage) |> Repo.preload([:from_chat_user]) |> Repo.preload([:chat_channel])
@@ -13,6 +14,7 @@ defmodule HandsChatServer.ChatMessageController do
 
     case Repo.insert(changeset) do
       {:ok, chat_message} ->
+        chat_message = chat_message |> Repo.preload(:from_chat_user) |> Repo.preload(:chat_channel)
         conn
         |> put_status(:created)
         |> put_resp_header("location", chat_message_path(conn, :show, chat_message))

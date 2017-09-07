@@ -5,8 +5,8 @@ defmodule HandsChatServer.Repo.Migrations.CreateChatMessage do
     create table(:chat_messages) do
       add :text, :text
       add :image, :text
-      add :from_chat_user_id, references(:chat_users, on_delete: :nothing)
-      add :chat_channel_id, references(:chat_channels, on_delete: :nothing)
+      add :from_chat_user_id, references(:chat_users, on_delete: :nothing), null: false
+      add :chat_channel_id, references(:chat_channels, on_delete: :nothing), null: false
 
       timestamps()
     end

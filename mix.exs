@@ -40,7 +40,8 @@ defmodule HandsChatServer.Mixfile do
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
      # {:phoenix_pubsub, "~> 1.0"},
-     {:phoenix_pubsub_redis, "~> 2.1.3"}]
+     {:phoenix_pubsub_redis, "~> 2.1.3"},
+     {:cors_plug, "~> 1.2"}]
 
   end
 

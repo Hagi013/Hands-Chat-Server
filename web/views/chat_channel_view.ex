@@ -12,6 +12,7 @@ defmodule HandsChatServer.ChatChannelView do
   def render("chat_channel.json", %{chat_channel: chat_channel}) do
     %{id: chat_channel.id,
       name: chat_channel.name,
-      purpose: chat_channel.purpose}
+      purpose: chat_channel.purpose,
+      members: chat_channel.members}
   end
 end

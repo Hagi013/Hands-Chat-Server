@@ -4,7 +4,7 @@ defmodule HandsChatServer.ChatChannelController do
   alias HandsChatServer.ChatChannel
 
   def index(conn, _params) do
-    chat_channels = Repo.all(ChatChannel)
+    chat_channels = Repo.all(ChatChannel) |> Repo.preload(:members)
     render(conn, "index.json", chat_channels: chat_channels)
   end
 

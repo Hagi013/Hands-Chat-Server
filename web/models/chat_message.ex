@@ -4,8 +4,8 @@ defmodule HandsChatServer.ChatMessage do
   schema "chat_messages" do
     field :text, :string
     field :image, :string
-    belongs_to :from_chat_user, HandsChatServer.ChatUser, foreign_key: :from_chat_user_id
-    belongs_to :chat_channel, HandsChatServer.ChatChannel,foreign_key: :chat_channel_id
+    belongs_to :from_chat_user, HandsChatServer.ChatUser
+    belongs_to :chat_channel, HandsChatServer.ChatChannel
 
     timestamps()
   end
@@ -18,13 +18,14 @@ defmodule HandsChatServer.ChatMessage do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:text, :image])
-    |> cast_assoc(:from_chat_user, [:id])
-    |> cast_assoc(:chat_channel, [:id])
-    |> foreign_key_constraint(:from_chat_user, [:id])
-    |> foreign_key_constraint(:chat_channel, [:id])
-    |> validate_required([:text, :image])
+    |> cast(params, [:text, :image, :from_chat_user_id, :chat_channel_id])
+    |> assoc_constraint(:from_chat_user)
+    |> assoc_constraint(:chat_channel)
+    |> foreign_key_constraint(:from_chat_user_id)
+    |> foreign_key_constraint(:chat_channel_id)
+    |> validate_required([:text, :image, :from_chat_user_id, :chat_channel_id])
 
   end
+
 
 end
